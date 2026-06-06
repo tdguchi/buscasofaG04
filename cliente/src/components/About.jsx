@@ -5,27 +5,27 @@ const team = [
   {
     name: 'Margarita Fernández García',
     role: 'Programadora',
-    bio: 'Programadora especializada en desarrollo de aplicaciones y mantenimiento de sistemas informáticos. Participa en el análisis, diseño e implementación de soluciones tecnológicas, garantizando la calidad del código y el cumplimiento de los requisitos funcionales del proyecto.'
+    bio: 'Se ha encargado de los cambios en los ficheros App.jsx  y  Home.tsx para corregir la arquitectura de la App y que sea siempre visible.'
   },
   {
     name: 'Pablo Bourdelande García',
     role: 'Jefe de Proyecto',
-    bio: 'Profesional con experiencia en dirección y coordinación de proyectos tecnológicos. Responsable de la planificación, seguimiento y control de las actividades del equipo, asegurando el cumplimiento de los objetivos, plazos y estándares de calidad establecidos.'
+    bio: 'Se ha encargado de los cambios en los ficheros Header.jsx, Footer.jsx y cypress/e2e/footer.cy.js  Ha realizado las pruebas Footer.'
   },
   {
     name: 'Juan María Pamies García',
     role: 'Programador',
-    bio: 'Desarrollador de software con experiencia en programación y soporte técnico de aplicaciones. Colabora en la construcción, optimización y evolución de soluciones informáticas, contribuyendo al correcto funcionamiento de los sistemas desarrollados.'
+    bio: 'Se ha encargado de completar la página Abouty probarla, además de añadir a los miembros y funciones del equipo.'
   },
   {
     name: 'Carlos Torres Cid',
     role: 'Programador',
-    bio: 'Especialista en desarrollo de software y resolución de incidencias técnicas. Participa en la implementación de nuevas funcionalidades, pruebas y mantenimiento de aplicaciones, velando por la estabilidad y eficiencia de las soluciones tecnológicas.'
+    bio: 'Se ha encargado de los cambios en los componentes NotFound, en corregir la ruta 404 y en corregir el fix step notfound.'
   },
   {
     name: 'Álvaro López Morales',
     role: 'Director del Proyecto',
-    bio: 'Director del proyecto responsable de la supervisión estratégica y la toma de decisiones clave. Coordina los recursos humanos y técnicos, define las líneas de actuación y garantiza la consecución de los objetivos del proyecto conforme a los requisitos del cliente y de la organización.'
+    bio: 'Se ha encargado de realizar y modificar la página del perfil de usuario y realizar la prueba de perfil.'
   }
 ]
 
