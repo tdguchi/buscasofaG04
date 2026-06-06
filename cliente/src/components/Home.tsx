@@ -13,43 +13,59 @@ const FUEL_TYPES = [
  */
 function getAverage(values: string[]) {
   const nums = values
-    .map(p => parseFloat(p.replace(',', '.')))  // convertir a número
-    .filter(n => !isNaN(n));                    // Eliminar inválidos
+    .map((p) => parseFloat(p.replace(',', '.')))
+    .filter((n) => !isNaN(n));
+
   if (nums.length === 0) return null;
+
   return (nums.reduce((a, b) => a + b, 0) / nums.length).toFixed(3);
 }
 
-
-const Home = ({ stations }) => {
-
-  console.log(stations);
-
-  // Nacional: medias por tipo de combustible
+const Home = ({ stations = [], loading = false, error = null }) => {
   const nationalSummary = useMemo(() => {
-    return FUEL_TYPES.map(fuel => {
-      const prices = stations.map(s => s[fuel.key]);
+    return FUEL_TYPES.map((fuel) => {
+      const prices = stations.map((s) => s[fuel.key]);
       const avg = getAverage(prices);
-      return { ...fuel, avg };
-    }).sort((a, b) => (b.avg && a.avg ? parseFloat(b.avg) - parseFloat(a.avg) : 0));
-  }, [stations]);
-  console.log(nationalSummary);
 
-  // Por comunidad autónoma
+      return { ...fuel, avg };
+    }).sort((a, b) =>
+      b.avg && a.avg ? parseFloat(b.avg) - parseFloat(a.avg) : 0
+    );
+  }, [stations]);
+
   const regionSummary = useMemo(() => {
-    return COMUNIDADES_AUTONOMAS.map(region => {
-      let regionName = region.name;
-      const regionStations = stations.filter(s => s['IDCCAA'] === region.id);
-      const fuelPrices = FUEL_TYPES.map(fuel => {
-        const prices = regionStations.map(s => s[fuel.key]);
+    return COMUNIDADES_AUTONOMAS.map((region) => {
+      const regionName = region.name;
+      const regionStations = stations.filter(
+        (s) => s['IDCCAA'] === region.id
+      );
+
+      const fuelPrices = FUEL_TYPES.map((fuel) => {
+        const prices = regionStations.map((s) => s[fuel.key]);
         const avg = getAverage(prices);
+
         return { ...fuel, avg };
       });
+
       return { regionName, fuelPrices };
     });
   }, [stations]);
 
+  if (loading) {
+    return (
+      <div className="home-container">
+        <p className="loading">Cargando...</p>
+      </div>
+    );
+  }
 
-  console.log(regionSummary)
+  if (error) {
+    return (
+      <div className="home-container">
+        <p className="error">Error: {error}</p>
+      </div>
+    );
+  }
 
   return (
     <div className="home-container">
