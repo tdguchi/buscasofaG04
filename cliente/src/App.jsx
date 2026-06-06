@@ -62,26 +62,26 @@ function App() {
   return (
     <BrowserRouter>
       <Header user={user} />
-      {
-        loading && <div className="loading">Cargando...</div>
-      }
-      {
-        error && <div className="error">Error: {error}</div>
-      }
-      {!loading && !error && (
-        <Routes>
-          <Route path="/registro" element={<Register />} />
-          <Route path="/login" element={<Login onLogin={setUser} />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/" element={<Home stations={stations} />} />
-          <Route path="/mapa" element={<FuelMap stations={stations} />} />
-          <Route path="/lista" element={<FuelTable stations={stations} />} />
-          <Route path="/station/:id" element={<StationDetail stations={stations} user={user} />} />
-        </Routes>
-      )}
+
+      <Routes>
+        <Route path="/registro" element={<Register />} />
+        <Route path="/login" element={<Login onLogin={setUser} />} />
+        <Route path="/about" element={<About />} />
+        <Route
+          path="/"
+          element={<Home stations={stations} loading={loading} error={error} />}
+        />
+        <Route path="/mapa" element={<FuelMap stations={stations} />} />
+        <Route path="/lista" element={<FuelTable stations={stations} />} />
+        <Route
+          path="/station/:id"
+          element={<StationDetail stations={stations} user={user} />}
+        />
+      </Routes>
+
       <Footer />
     </BrowserRouter>
-  )
+  );
 }
 
 export default App
