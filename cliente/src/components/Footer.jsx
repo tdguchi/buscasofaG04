@@ -2,16 +2,16 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <div>
+    <footer id="footer">
         <h2>Miembros del equipo:</h2>
         <ul>
-            <li>Javier García</li>
-            <li>Javier López</li>
-            <li>Javier Martínez</li>
-            <li>Javier Pérez</li>
-            <li>Javier Rodríguez</li>
+            <li>Pablo Bourdelande</li>
+            <li>Juan María Pamies</li>
+            <li>Alvaro López</li>
+            <li>Carlos Torres</li>
+            <li>Margarita Fernández</li>
         </ul>
-    </div>
+    </footer>
   )
 }
 
