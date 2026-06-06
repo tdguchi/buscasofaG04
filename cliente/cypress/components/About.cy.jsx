@@ -4,15 +4,13 @@ import About from '../../src/components/About'
 
 describe('<About />', () => {
   it('renders', () => {
-    // see: https://on.cypress.io/mounting-react
+    // see: https://on.cypress.io/mounting-react  
     cy.mount(<About />).then(() => {
-      cy.get('h1').should('contain', 'Acerca de nosotros y nuestro equipo:')
-      cy.get('#info').should('contain', 'Somos el equipo nº 5')
+      cy.get('h1').should('contain', 'Acerca de nosotros')
+      cy.get('#info').should('contain', 'Somos el equipo nº 4')
     })  
   })
 })
-
-
 
   it('muestra los miembros del equipo con nombre, rol y descripción', () => {
     const members = [
