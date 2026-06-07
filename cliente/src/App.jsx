@@ -4,8 +4,7 @@ import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { fetchFuelPrices } from './apis/fuelApiLib';
-import { FuelApi } from './apis/FuelApi';
-
+import NotFound from './components/NotFound';
 
 import Header from './components/Header';
 import FuelMap from './components/FuelMap';
@@ -17,7 +16,7 @@ import Register from './components/Register';
 import Login from './components/Login';
 import UserProfile from './components/UserProfile';
 import Footer from './components/Footer';
-
+import { FuelApi } from './apis/FuelApi';
 // Componente principal de la aplicación
 // Este componente es el punto de entrada de la aplicación y se encarga de gestionar las rutas y el estado global de la aplicación.
 // Utiliza React Router para la navegación entre diferentes componentes y páginas.
@@ -28,27 +27,13 @@ import Footer from './components/Footer';
 // El componente Routes se encarga de definir las diferentes rutas de la aplicación y los componentes que se renderizan en cada ruta.
 // El componente BrowserRouter se encarga de gestionar la navegación entre las diferentes rutas de la aplicación.
 function App() {
-
   const [stations, setStations] = useState([]);
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);   // Inicialmente cargando ...
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-    useEffect(() => {
-      fetchFuelPrices()
-        .then(data => {
-          console.log(data);
-          setStations(data.ListaEESSPrecio);
-          setLoading(false);
-        })
-        .catch(err => {
-          setError(err.message);
-          setLoading(false);
-        });
-    }, []);
-
-/*   useEffect(() => {
-    FuelApi.getInstance().getFuelPrices()
+  useEffect(() => {
+    fetchFuelPrices()
       .then(data => {
         console.log(data);
         setStations(data.ListaEESSPrecio);
@@ -58,17 +43,16 @@ function App() {
         setError(err.message);
         setLoading(false);
       });
-  }, []); */
+  }, []);
 
   return (
     <BrowserRouter>
       <Header user={user} />
-      {
-        loading && <div className="loading">Cargando...</div>
-      }
-      {
-        error && <div className="error">Error: {error}</div>
-      }
+
+      {loading && <div className="loading">Cargando...</div>}
+
+      {error && <div className="error">Error: {error}</div>}
+
       {!loading && !error && (
         <Routes>
           <Route path="/registro" element={<Register />} />
@@ -78,12 +62,17 @@ function App() {
           <Route path="/" element={<Home stations={stations} />} />
           <Route path="/mapa" element={<FuelMap stations={stations} />} />
           <Route path="/lista" element={<FuelTable stations={stations} />} />
-          <Route path="/station/:id" element={<StationDetail stations={stations} user={user} />} />
+          <Route
+            path="/station/:id"
+            element={<StationDetail stations={stations} user={user} />}
+          />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       )}
+
       <Footer />
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;
