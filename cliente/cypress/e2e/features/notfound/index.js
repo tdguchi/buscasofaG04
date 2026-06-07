@@ -1,11 +1,10 @@
-/// <reference types="Cypress" />
-import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
+/// <reference types="cypress" />
+import { Given, Then } from "@badeball/cypress-cucumber-preprocessor";
 
-Given("el usuario navega a {string}", function (string) {
-    cy.visit("/xxx")
+Given("el usuario navega a {string}", function (ruta) {
+  cy.visit(ruta);
 });
 
-
-Then("debería ver el texto {string}", function (string) {
-    cy.contains(string).should("exist");
+Then("debería ver el texto {string}", function (texto) {
+  cy.contains(texto).should("exist");
 });
